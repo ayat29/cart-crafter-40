@@ -1,0 +1,7 @@
+organization=ayat29
+projectKey=lovable-react-app
+serverUrl=https://sonarcloud.io
+serverVersion=8.0.0.68276
+dashboardUrl=https://sonarcloud.io/dashboard?id=lovable-react-app
+ceTaskId=AZmvVmaL_6B5r0d4vqKO
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AZmvVmaL_6B5r0d4vqKO
