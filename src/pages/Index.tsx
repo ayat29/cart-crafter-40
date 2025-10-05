@@ -4,6 +4,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useCart } from "@/contexts/CartContext";
 import { ProductCard } from "@/components/ProductCard";
 import { Cart } from "@/components/Cart";
+import { PastPurchases } from "@/components/PastPurchases";
 import { Button } from "@/components/ui/button";
 import { User } from "@supabase/supabase-js";
 import { useToast } from "@/hooks/use-toast";
@@ -91,6 +92,10 @@ const Index = () => {
         </div>
       </header>
       <main className="container mx-auto px-4 py-8">
+        <div className="mb-8">
+          <PastPurchases />
+        </div>
+        <h2 className="text-xl font-semibold mb-6">Products</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {PRODUCTS.map((product) => (
             <ProductCard key={product.id} product={product} onAddToCart={addToCart} />

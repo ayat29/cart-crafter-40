@@ -4,15 +4,35 @@ import { useCart } from "@/contexts/CartContext";
 import { ShoppingCart, Trash2, Plus, Minus } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
 
 export function Cart() {
   const { items, removeFromCart, updateQuantity, clearCart, total } = useCart();
   const [open, setOpen] = useState(false);
 
-  const handleCheckout = () => {
-    toast.success("Payment successful! (Demo)");
-    clearCart();
-    setOpen(false);
+  const handleCheckout = async () => {
+    try {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) {
+        toast.error("Please log in to complete checkout");
+        return;
+      }
+
+      const { error } = await supabase.from("purchases").insert({
+        user_id: user.id,
+        items: items as any,
+        total: total
+      });
+
+      if (error) throw error;
+
+      toast.success("Payment successful! (Demo)");
+      clearCart();
+      setOpen(false);
+    } catch (error) {
+      toast.error("Checkout failed. Please try again.");
+      console.error(error);
+    }
   };
 
   return (
