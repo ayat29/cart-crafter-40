@@ -11,7 +11,6 @@ pipeline {
         
         stage('Build') {
             steps {
-                // bat 'Start-Service com.docker.service'
                 echo 'Building the application...'
                 bat 'npm --prefix E:/SIT753-HD/cart-crafter-40 run build'
             }
@@ -23,7 +22,7 @@ pipeline {
             }
         }
 
-        stage('Code Quality Analysis') {
+        stage('Code Quality Analysis and Security Scan') {
             steps {
                 dir('E:/SIT753-HD/cart-crafter-40') {
                 echo 'Analyzing code quality...'
@@ -32,14 +31,6 @@ pipeline {
                 }
             }
         }
-
-        // stage('Security Scan') {
-        //     steps {
-        //         echo 'Running security scans...'
-        //         // Example: OWASP Dependency Check
-        //         sh 'mvn org.owasp:dependency-check-maven:check'
-        //     }
-        // }
 
         stage('Deploy') {
             steps {
@@ -59,14 +50,6 @@ pipeline {
                 }
             }
         }
-
-        // stage('Monitoring & Alerting') {
-        //     steps {
-        //         echo 'Triggering monitoring and alerting setup...'
-        //         // Example: Call monitoring scripts or API
-        //         sh './monitoring_setup.sh'
-        //     }
-        // }
     }
     post {
         success {

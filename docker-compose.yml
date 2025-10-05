@@ -6,5 +6,5 @@ services:
     environment:
       NODE_ENV: development
     volumes:
-      - .:/app  # optional for live code updates
+      - .:/app  
     restart: unless-stopped
