@@ -106,3 +106,4 @@ describe('CartContext', () => {
     expect(result.current.items).toHaveLength(0);
   });
 });
+
