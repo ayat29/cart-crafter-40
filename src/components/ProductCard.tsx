@@ -33,3 +33,4 @@ export function ProductCard({ product, onAddToCart }: ProductCardProps) {
     </Card>
   );
 }
+
